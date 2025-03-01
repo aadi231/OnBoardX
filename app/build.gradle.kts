@@ -53,7 +53,10 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.logging.interceptor)
     implementation(libs.hilt.android)
+    implementation(libs.glide)
+    implementation(libs.lottie)
 
+    kapt(libs.compiler)
     kapt(libs.hilt.android.compiler)
 
     testImplementation(libs.junit)

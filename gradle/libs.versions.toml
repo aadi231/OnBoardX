@@ -13,6 +13,9 @@ retrofit = "2.11.0"
 lifecycleKtx = "2.8.7"
 okhttp = "4.12.0"
 hiltAndroid = "2.51.1"
+glide = "4.16.0"
+compiler = "4.16.0"
+lottie = "6.6.2"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -31,6 +34,9 @@ okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhtt
 logging-interceptor = { group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref = "okhttp" }
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hiltAndroid" }
 hilt-android-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hiltAndroid" }
+glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
+compiler = { group = "com.github.bumptech.glide", name = "compiler", version.ref = "compiler" }
+lottie = { group = "com.airbnb.android", name = "lottie", version.ref = "lottie" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

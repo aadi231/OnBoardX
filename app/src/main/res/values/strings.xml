@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">OnBoardX</string>
+    <string name="welcome_to">Welcome to</string>
+    <string name="onboarding">Onboarding</string>
+    <string name="item_dummy_text">Buy gold anytime, anywhere</string>
+    <string name="save_button_dummy_text">Save in Gold</string>
 </resources>
