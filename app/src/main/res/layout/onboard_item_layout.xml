@@ -3,48 +3,92 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/rect_rounded_radius_28dp_28085c52"
-    android:padding="16dp"
-    android:layout_marginTop="12dp">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/cardImageView"
-        android:layout_width="31.34dp"
-        android:layout_height="36dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:background="@drawable/circle_transparent_bg"
-        android:src="@drawable/collapsed_image_placeholder"
-        android:scaleType="centerCrop"/>
-
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/itemTextView"
-        android:layout_width="0dp"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/collapsedLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toEndOf="@+id/cardImageView"
-        app:layout_constraintTop_toTopOf="@id/cardImageView"
-        app:layout_constraintBottom_toBottomOf="@id/cardImageView"
-        app:layout_constraintEnd_toStartOf="@id/itemArrowCardInteraction"
-        android:layout_marginStart="16dp"
-        android:text="@string/item_dummy_text"
-        android:textColor="@color/white"
-        android:textStyle="bold"
-        android:textSize="14sp"
-        android:gravity="center_vertical"
-        android:paddingVertical="3dp"
-        android:paddingHorizontal="8dp"
-        android:layout_marginEnd="16dp"/>
-
-    <ImageView
-        android:id="@+id/itemArrowCardInteraction"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/down_arrow_24"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:background="@drawable/rect_rounded_radius_28dp_28085c52"
+        android:padding="16dp"
+        android:layout_marginTop="12dp"
+        android:visibility="gone">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/cardImageView"
+            android:layout_width="31.34dp"
+            android:layout_height="36dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:background="@drawable/circle_transparent_bg"
+            android:src="@drawable/collapsed_image_placeholder"
+            android:scaleType="centerCrop"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/itemTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/cardImageView"
+            app:layout_constraintTop_toTopOf="@id/cardImageView"
+            app:layout_constraintBottom_toBottomOf="@id/cardImageView"
+            app:layout_constraintEnd_toStartOf="@id/itemArrowCardInteraction"
+            android:layout_marginStart="16dp"
+            android:text="@string/item_dummy_text"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:gravity="center_vertical"
+            android:paddingVertical="3dp"
+            android:paddingHorizontal="8dp"
+            android:layout_marginEnd="16dp"/>
+
+        <ImageView
+            android:id="@+id/itemArrowCardInteraction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/down_arrow_24"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/expendedLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/collapsedLayout"
+        android:background="@drawable/rect_rounded_radius_28dp_28085c52"
+        android:layout_marginTop="12dp"
+        android:padding="16dp"
+        android:visibility="visible">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/expendedCardImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="296:340"
+            app:srcCompat="@drawable/expanded_layout_dummy_image"/>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/expendedCardTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@+id/expendedCardImageView"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:lineSpacingExtra="6dp"
+            android:text="@string/expanded_card_dummy_text"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:padding="4dp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

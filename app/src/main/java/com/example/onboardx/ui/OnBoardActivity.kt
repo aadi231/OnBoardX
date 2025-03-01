@@ -1,5 +1,8 @@
 package com.example.onboardx.ui
 
+import android.app.ActivityOptions
+import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
@@ -11,14 +14,17 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.onboardx.R
+import com.example.onboardx.animation.RecyclerViewItemAnimator
 import com.example.onboardx.data.model.EducationCardData
 import com.example.onboardx.data.model.OnBoardingData
 import com.example.onboardx.data.model.SaveButtonCtaData
 import com.example.onboardx.databinding.ActivityOnBoardBinding
 import com.example.onboardx.ui.adapters.OnboardItemAdapter
-import com.example.onboardx.utils.AnimationUtils.fadeIn
-import com.example.onboardx.utils.AnimationUtils.fadeOut
+import com.example.onboardx.utils.BackgroundWithRadialGradient
+import com.example.onboardx.utils.Utils.fadeIn
+import com.example.onboardx.utils.Utils.fadeOut
 import com.example.onboardx.utils.ResourceWrapper
+import com.example.onboardx.utils.Utils.setGradientBackground
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -40,12 +46,25 @@ class OnBoardActivity : AppCompatActivity() {
         }
         setupObserver()
         fetchOnBoardData()
+        setupClickListener()
+    }
+
+    private fun setupClickListener() {
+        onboardBinding.saveButton.setOnClickListener {
+            val intent = Intent(this, LandingPageActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            val options = ActivityOptions.makeCustomAnimation(this, R.anim.activity_fade_in_anim, R.anim.activity_slide_up_anim)
+            startActivity(intent, options.toBundle())
+            finish()
+        }
     }
 
     private fun setupRecyclerViewAdapter(educationCardList: List<EducationCardData>) {
         onboardBinding.onboardingRecyclerView.apply {
             visibility = View.VISIBLE
-            adapter = OnboardItemAdapter(educationCardList)
+            adapter = OnboardItemAdapter(educationCardList).apply {
+                onItemAnimationStart = onAnimationStart
+            }
             layoutManager = LinearLayoutManager(this@OnBoardActivity, RecyclerView.VERTICAL, false)
         }
     }
@@ -87,5 +106,14 @@ class OnBoardActivity : AppCompatActivity() {
         onboardBinding.saveText.text = saveButtonCta.text
         onboardBinding.saveButtonLottie.setAnimationFromUrl(ctaLottie)
         onboardBinding.saveButton.fadeIn(500)
+    }
+
+    private val onAnimationStart = { backgroundColor : String, endGradient: String, startGradient: String ->
+        //onboardBinding.root.setGradientBackground(backgroundColor, endGradient, startGradient)
+
+        val bgColor = Color.parseColor("#$backgroundColor") // Background color
+        val end = Color.parseColor(endGradient)
+        val gradientDrawable = BackgroundWithRadialGradient(bgColor, end)
+        onboardBinding.root.background = gradientDrawable
     }
 }

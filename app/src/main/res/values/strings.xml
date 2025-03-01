@@ -4,4 +4,7 @@
     <string name="onboarding">Onboarding</string>
     <string name="item_dummy_text">Buy gold anytime, anywhere</string>
     <string name="save_button_dummy_text">Save in Gold</string>
+    <string name="landing_page">Landing page</string>
+    <string name="landing_page_cap">Landing Page</string>
+    <string name="expanded_card_dummy_text">ZERO platform or convenience fees</string>
 </resources>

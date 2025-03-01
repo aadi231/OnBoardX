@@ -8,5 +8,6 @@ data class EducationCardData(
     val strokeStartColor : String,
     val strokeEndColor : String,
     val startGradient : String,
-    val endGradient : String
+    val endGradient : String,
+    var isExpanded: Boolean? = false
 )
