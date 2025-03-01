@@ -1,5 +1,6 @@
 package com.example.onboardx.data.api
 
+import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
@@ -11,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
-
+@Module
 @InstallIn(SingletonComponent::class)
 object RetrofitClient {
     private const val BASE_URL = "https://run.mocky.io/"
@@ -19,7 +20,7 @@ object RetrofitClient {
     //Provide Interceptor to log the response
     @Provides
     @Singleton
-    private fun provideInterceptor() : HttpLoggingInterceptor {
+    fun provideInterceptor() : HttpLoggingInterceptor {
         return HttpLoggingInterceptor().apply {
             level = HttpLoggingInterceptor.Level.BODY
         }
@@ -28,7 +29,7 @@ object RetrofitClient {
     // Provide OKHttpClient
     @Provides
     @Singleton
-    private fun provideHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
+    fun provideHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
             .connectTimeout(30, TimeUnit.SECONDS)
@@ -40,7 +41,7 @@ object RetrofitClient {
     // Provide Retrofit Instance
     @Provides
     @Singleton
-    private fun provideRetrofitClient(okHttpClient: OkHttpClient): Retrofit {
+    fun provideRetrofitClient(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
@@ -51,7 +52,7 @@ object RetrofitClient {
     // Provide OnBoard Service Instance
     @Provides
     @Singleton
-    private fun provideOnBoardServiceInstance(retrofit: Retrofit): OnBoardingApiService {
+    fun provideOnBoardServiceInstance(retrofit: Retrofit): OnBoardingApiService {
         return retrofit.create(OnBoardingApiService::class.java)
     }
 
