@@ -64,6 +64,7 @@ class OnBoardActivity : AppCompatActivity() {
             visibility = View.VISIBLE
             adapter = OnboardItemAdapter(educationCardList).apply {
                 onItemAnimationStart = onAnimationStart
+                onAdapterAnimationEnd = onAnimationEnd
             }
             layoutManager = LinearLayoutManager(this@OnBoardActivity, RecyclerView.VERTICAL, false)
         }
@@ -78,9 +79,9 @@ class OnBoardActivity : AppCompatActivity() {
             response?.let {
                 when(it){
                     is ResourceWrapper.Success -> {
-                        onboardBinding.welcomeToText.fadeOut(500)
-                        onboardBinding.onboardingText.fadeOut(500)
-                        onboardBinding.onboardAppBar.fadeIn(500)
+                        onboardBinding.welcomeToText.fadeOut(1000)
+                        onboardBinding.onboardingText.fadeOut(1000)
+                        onboardBinding.onboardAppBar.fadeIn(1000)
 
                         populateViews(it.data.data.onboardingData)
                     }
@@ -105,7 +106,6 @@ class OnBoardActivity : AppCompatActivity() {
     private fun loadCtaData(saveButtonCta: SaveButtonCtaData, ctaLottie: String) {
         onboardBinding.saveText.text = saveButtonCta.text
         onboardBinding.saveButtonLottie.setAnimationFromUrl(ctaLottie)
-        onboardBinding.saveButton.fadeIn(500)
     }
 
     private val onAnimationStart = { backgroundColor : String, endGradient: String, startGradient: String ->
@@ -115,5 +115,9 @@ class OnBoardActivity : AppCompatActivity() {
         val end = Color.parseColor(endGradient)
         val gradientDrawable = BackgroundWithRadialGradient(bgColor, end)
         onboardBinding.root.background = gradientDrawable
+    }
+
+    private val onAnimationEnd = {
+        onboardBinding.saveButton.fadeIn(500)
     }
 }

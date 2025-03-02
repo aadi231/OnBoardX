@@ -134,4 +134,15 @@ object Utils {
                 setDuration(duration)
             }
     }
+
+    fun View.rotateAnimator(duration : Long = 1000, start : Float, end : Float) : ObjectAnimator? {
+        return ObjectAnimator
+            .ofFloat(
+                this,
+                "rotation",
+                start, end
+            ).apply {
+                setDuration(duration)
+            }
+    }
 }
