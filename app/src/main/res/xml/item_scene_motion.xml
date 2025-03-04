@@ -1,0 +1,81 @@
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Start state: Item is off-screen at the bottom with a 6-degree angle -->
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/cardImageView"
+            android:layout_width="31.34dp"
+            android:layout_height="36dp"
+            android:rotation="6"
+            android:translationY="200dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <Constraint
+            android:id="@+id/itemTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:rotation="6"
+            android:translationY="200dp"
+            app:layout_constraintStart_toEndOf="@id/cardImageView"
+            app:layout_constraintTop_toTopOf="@id/cardImageView"
+            app:layout_constraintBottom_toBottomOf="@id/cardImageView"
+            app:layout_constraintEnd_toStartOf="@id/itemArrowCardInteraction"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" />
+
+        <Constraint
+            android:id="@+id/itemArrowCardInteraction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="6"
+            android:translationY="200dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </ConstraintSet>
+
+    <!-- End state: Item is in its normal position with 0-degree angle -->
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/cardImageView"
+            android:layout_width="31.34dp"
+            android:layout_height="36dp"
+            android:rotation="0"
+            android:translationY="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <Constraint
+            android:id="@+id/itemTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:rotation="0"
+            android:translationY="0dp"
+            app:layout_constraintStart_toEndOf="@id/cardImageView"
+            app:layout_constraintTop_toTopOf="@id/cardImageView"
+            app:layout_constraintBottom_toBottomOf="@id/cardImageView"
+            app:layout_constraintEnd_toStartOf="@id/itemArrowCardInteraction"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp" />
+
+        <Constraint
+            android:id="@+id/itemArrowCardInteraction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:rotation="0"
+            android:translationY="0dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+    </ConstraintSet>
+
+    <!-- Transition from start to end state -->
+    <Transition
+        app:constraintSetStart="@id/start"
+        app:constraintSetEnd="@id/end"
+        app:duration="1000"></Transition>
+</MotionScene>
